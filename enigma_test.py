@@ -31,9 +31,16 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(enigma('A', 1, 1, 0, 2, 0, 3, 0, ''), 'B')
         self.assertEqual(enigma('A', 1, 1, 0, 2, 0, 3, 0, 'AC'), 'Q')
         self.assertEqual(enigma('A', 1, 1, 0, 2, 0, 3, 0, 'AC qd'), 'D')
-        self.assertEqual(enigma('A', 1, 1, 0, 2, 0, 3, 0, 'AC qd az'), 'Извините, невозможно произвести коммутацию')
-        self.assertEqual(enigma('A', 1, 1, 0, 2, 0, 3, 0, 'AC qd za'), 'Извините, невозможно произвести коммутацию')
+        self.assertEqual(enigma('AAAAAAA', 1, 1, 0, 2, 0, 3, 0, ''), 'BDZGOWC')
+        self.assertEqual(enigma('A', 1, 1, 0, 2, 0, 3, 0, 'AC qd az'), 'Sorry, it is not possible to make the switching')
+        self.assertEqual(enigma('A', 1, 1, 0, 2, 0, 3, 0, 'AC qd za'), 'Sorry, it is not possible to make the switching')
         self.assertEqual(enigma('AAAAAAA', 1, 1, 0, 2, 0, 3, 0), 'BDZGOWC')
+        self.assertEqual(enigma('BDZGOWC', 1, 1, 0, 2, 0, 3, 0), 'AAAAAAA')
+        self.assertEqual(enigma('AAAAAAA', 1, 2, 3, 2, 3, 2, 3), 'BGDMBTZ')
+        self.assertEqual(enigma('AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA',
+                                1, 2, 3, 2, 3, 2, 3), 'BGDMBTZUONCIZMORCPNVLGOVLMURTNZNDROPETXLPLYCMIBICXITUCM')
+        self.assertEqual(enigma('AAAAAAA', 1, 2, 3, 2, 3, 2, 3), 'BGDMBTZ')
+        self.assertEqual(enigma('xyz', 1, 3, 1, 1, 2, 2, 3), 'OLC')
 
 
 if __name__ == '__main__':
