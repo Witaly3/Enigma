@@ -30,13 +30,12 @@ def switching(word, pairs):
     return word
 
 
-def enigma(text_enigma: str, ref: int, rot1: int, shift1: int, rot2: int,
+def enigma(t: str, ref: int, rot1: int, shift1: int, rot2: int,
            shift2: int, rot3: int, shift3: int, pairs: str = '') -> str:
     original = {1: 17, 2: 5, 3: 22}
     x = [rot3, rot2, rot1]
     y = [shift3, shift2, shift1]
-    s = ''
-    t = ''.join([i for i in text_enigma.upper() if i in ALPHABET])
+    result_text = ''
     if pairs:
         check = [i.upper() for i in pairs.split() if i.isalpha()]
         if len(set(''.join(check))) != len(''.join(check)):
@@ -55,11 +54,11 @@ def enigma(text_enigma: str, ref: int, rot1: int, shift1: int, rot2: int,
         for k in range(2, -1, -1):
             word = changing(rotor(changing(word, y[k]), x[k], reverse=True), y[k] * (-1))
         word = switching(word, switch)
-        s += word
+        result_text += word
         if (y[1] + 1) == original[rot2]:
             y[1] = (y[1] + 1) % 26
             y[2] = (y[2] + 1) % 26
-    return s
+    return result_text
 
 
 def text(text_first: str) -> str:

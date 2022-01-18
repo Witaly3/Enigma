@@ -37,10 +37,10 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(enigma('AAAAAAA', 1, 1, 0, 2, 0, 3, 0), 'BDZGOWC')
         self.assertEqual(enigma('BDZGOWC', 1, 1, 0, 2, 0, 3, 0), 'AAAAAAA')
         self.assertEqual(enigma('AAAAAAA', 1, 2, 3, 2, 3, 2, 3), 'BGDMBTZ')
-        self.assertEqual(enigma('AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA AAAAA',
-                                1, 2, 3, 2, 3, 2, 3), 'BGDMBTZUONCIZMORCPNVLGOVLMURTNZNDROPETXLPLYCMIBICXITUCM')
+        self.assertEqual(enigma('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 1, 2, 3, 2, 3, 2, 3),
+                         'BGDMBTZUONCIZMORCPNVLGOVLMURTNZNDROPETXLPLYCMIBICXITUCM')
         self.assertEqual(enigma('AAAAAAA', 1, 2, 3, 2, 3, 2, 3), 'BGDMBTZ')
-        self.assertEqual(enigma('xyz', 1, 3, 1, 1, 2, 2, 3), 'OLC')
+        self.assertEqual(enigma('XYZ', 1, 3, 1, 1, 2, 2, 3), 'OLC')
 
 
 if __name__ == '__main__':
