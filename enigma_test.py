@@ -18,10 +18,10 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(reflector('W', 1), 'V')
 
     def test_changing(self):
-        self.assertEqual(changing('A', 5), 'F')
-        self.assertEqual(changing('S', 10), 'C')
-        self.assertEqual(changing('W', 20), 'Q')
-        self.assertEqual(changing('A', 0), 'A')
+        self.assertEqual(change('A', 5), 'F')
+        self.assertEqual(change('S', 10), 'C')
+        self.assertEqual(change('W', 20), 'Q')
+        self.assertEqual(change('A', 0), 'A')
 
     def test_switching(self):
         self.assertEqual(switching('A', ['AC']), 'C')
