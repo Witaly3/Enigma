@@ -7,13 +7,11 @@ class ExceptionName(Exception):
 
 def rotor(letter: str, n: int, reverse=False) -> str:
     """
-
     :param letter: Letter to change
     :param n: Rotor number
     :param reverse: The direction of movement of the letter through the rotors
     :return: Changed letter
     """
-    global ALPHABET
     rot = {0: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1: 'EKMFLGDQVZNTOWYHXUSPAIBRCJ',
            2: 'AJDKSIRUXBLHWTMCQGZNPYFVOE', 3: 'BDFHJLCPRTXVZNYEIWGAKMUSQO'}
     return ALPHABET[rot[n].find(letter) % len(ALPHABET)] if reverse else rot[n][ALPHABET.find(letter) % len(rot[n])]
@@ -21,24 +19,20 @@ def rotor(letter: str, n: int, reverse=False) -> str:
 
 def reflector(letter: str, n: int) -> str:
     """
-
     :param letter: Letter to change
     :param n: Reflector number
     :return: Changed letter
     """
-    global ALPHABET
     ref = {0: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1: 'YRUHQSLDPXNGOKMIEBFZCWVJAT'}
     return ref[n][ALPHABET.find(letter) % len(ref[n])]
 
 
 def change(letter: str, key: int) -> str:
     """
-
     :param letter: Letter to change
     :param key: Letter shift relative to the alphabet
     :return: Changed letter
     """
-    global ALPHABET
     return ALPHABET[(ALPHABET.find(letter) + key) % len(ALPHABET)]
 
 
@@ -57,7 +51,6 @@ def switching(letter: str, pairs: list) -> str:
 def enigma(t: str, ref: int, rot1: int, shift1: int, rot2: int,
            shift2: int, rot3: int, shift3: int, pairs: str = '') -> str:
     """
-
     :param t: Text to be processed
     :param ref: Reflector number
     :param rot1: Rotor number 1
@@ -100,7 +93,6 @@ def enigma(t: str, ref: int, rot1: int, shift1: int, rot2: int,
 
 def text(text_first: str) -> str:
     """
-
     :param text_first: Text entered by the user
     :return: The text is ready for further work
     """
