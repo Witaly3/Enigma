@@ -1,4 +1,4 @@
-ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 
 class ExceptionName(Exception):
@@ -12,9 +12,17 @@ def rotor(letter: str, n: int, reverse=False) -> str:
     :param reverse: The direction of movement of the letter through the rotors
     :return: Changed letter
     """
-    rot = {0: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1: 'EKMFLGDQVZNTOWYHXUSPAIBRCJ',
-           2: 'AJDKSIRUXBLHWTMCQGZNPYFVOE', 3: 'BDFHJLCPRTXVZNYEIWGAKMUSQO'}
-    return ALPHABET[rot[n].find(letter) % len(ALPHABET)] if reverse else rot[n][ALPHABET.find(letter) % len(rot[n])]
+    rot = {
+        0: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        1: "EKMFLGDQVZNTOWYHXUSPAIBRCJ",
+        2: "AJDKSIRUXBLHWTMCQGZNPYFVOE",
+        3: "BDFHJLCPRTXVZNYEIWGAKMUSQO",
+    }
+    return (
+        ALPHABET[rot[n].find(letter) % len(ALPHABET)]
+        if reverse
+        else rot[n][ALPHABET.find(letter) % len(rot[n])]
+    )
 
 
 def reflector(letter: str, n: int) -> str:
@@ -23,7 +31,7 @@ def reflector(letter: str, n: int) -> str:
     :param n: Reflector number
     :return: Changed letter
     """
-    ref = {0: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 1: 'YRUHQSLDPXNGOKMIEBFZCWVJAT'}
+    ref = {0: "ABCDEFGHIJKLMNOPQRSTUVWXYZ", 1: "YRUHQSLDPXNGOKMIEBFZCWVJAT"}
     return ref[n][ALPHABET.find(letter) % len(ref[n])]
 
 
@@ -48,8 +56,17 @@ def switching(letter: str, pairs: list) -> str:
     return letter
 
 
-def enigma(t: str, ref: int, rot1: int, shift1: int, rot2: int,
-           shift2: int, rot3: int, shift3: int, pairs: str = '') -> str:
+def enigma(
+    t: str,
+    ref: int,
+    rot1: int,
+    shift1: int,
+    rot2: int,
+    shift2: int,
+    rot3: int,
+    shift3: int,
+    pairs: str = "",
+) -> str:
     """
     :param t: Text to be processed
     :param ref: Reflector number
@@ -65,11 +82,11 @@ def enigma(t: str, ref: int, rot1: int, shift1: int, rot2: int,
     original = {1: 17, 2: 5, 3: 22}
     x = [rot3, rot2, rot1]
     y = [shift3, shift2, shift1]
-    result_text = ''
+    result_text = ""
     if pairs:
         check = [i.upper() for i in pairs.split() if i.isalpha()]
-        if len(set(''.join(check))) != len(''.join(check)):
-            return 'Sorry, it is not possible to make the switching'
+        if len(set("".join(check))) != len("".join(check)):
+            return "Sorry, it is not possible to make the switching"
         switch = check
     else:
         switch = []
@@ -97,14 +114,16 @@ def text(text_first: str) -> str:
     :return: The text is ready for further work
     """
     try:
-        t1 = ''.join([i for i in text_first.upper() if i in ALPHABET])
+        t1 = "".join([i for i in text_first.upper() if i in ALPHABET])
         if not t1:
             raise ExceptionName
-        t2 = ''.join([i for i in text_first.upper() if i.isalpha()])
+        t2 = "".join([i for i in text_first.upper() if i.isalpha()])
         if len(t1) != len(t2):
             raise ExceptionName
     except ExceptionName:
-        text_repeat = input("Please enter your text to encrypt or decrypt again (only english words):")
+        text_repeat = input(
+            "Please enter your text to encrypt or decrypt again (only english words):"
+        )
         return text(text_repeat)
     else:
         return t1
@@ -113,7 +132,7 @@ def text(text_first: str) -> str:
 def main():
     text_question = input("Enter your text to encrypt / decrypt (only english words):")
     t = text(text_question)
-    print('Your encrypted / decrypted text:', enigma(t, 1, 1, 0, 2, 0, 3, 0, ''))
+    print("Your encrypted / decrypted text:", enigma(t, 1, 1, 0, 2, 0, 3, 0, ""))
 
 
 if __name__ == "__main__":
